@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   }
   const labelSelector = podSelector !== undefined ? podSelector : `${APP_LABEL}=${appName}`;
   try {
-    const kc = makeKubeConfig(getKubernetesConfig())
+    const kc = makeKubeConfig(getKubernetesConfig());
     if (!kc) {
       res.status(500).send({
         error: "No kubernetes configuration",
