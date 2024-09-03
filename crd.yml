@@ -1,0 +1,65 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: homepageservices.gethomepage.dev
+spec:
+  group: gethomepage.dev
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                instances:
+                  type: array
+                  items:
+                    type: string
+                app:
+                  type: string
+                namespace:
+                  type: string
+                href:
+                  type: string
+                name:
+                  type: string
+                group:
+                  type: string
+                weight:
+                  type: integer
+                icon:
+                  type: string
+                description:
+                  type: string
+                external:
+                  type: boolean
+                podSelector:
+                  type: string
+                ping:
+                  type: string
+                siteMonitor:
+                  type: string
+                statusStyle:
+                  type: string
+                widget:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                  required:
+                  - type
+                  x-kubernetes-preserve-unknown-fields: true
+                  # x-kubernetes-validations:
+                  # - rule: "self.all(key, !(key.matches('.+From$')) || (has(self[key].secretKeyRef.name) && has(self[key].secretKeyRef.key)) || (has(self[key].configMapKeyRef.name) && has(self[key].configMapKeyRef.key)))"
+                  #   message: Some widget property ends with From, but doesn't contain secretKeyRef nor configMapKeyRef
+  scope: Namespaced
+  names:
+    plural: homepageservices
+    singular: homepageservice
+    kind: HomepageService
