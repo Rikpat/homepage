@@ -559,6 +559,9 @@ export function cleanServiceGroups(groups) {
 
           // wgeasy
           threshold,
+
+          // technitium
+          range,
         } = cleanedService.widget;
 
         let fieldsList = fields;
@@ -702,6 +705,9 @@ export function cleanServiceGroups(groups) {
         }
         if (type === "frigate") {
           if (enableRecentEvents !== undefined) cleanedService.widget.enableRecentEvents = enableRecentEvents;
+        }
+        if (type === "technitium") {
+          if (range !== undefined) cleanedService.widget.range = range;
         }
       }
 
